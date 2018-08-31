@@ -7,6 +7,7 @@ const photoConverter = row => ({
     likes: row.likes,
     comments: row.comments,
     userId: row.user_id,
+    userName: row.user_name
 });
 
 const commentConverter = row => ({
@@ -33,7 +34,7 @@ class PhotoDao {
 
         return new Promise((resolve, reject) => {
             this._db.all(`
-                SELECT  p.*,
+                SELECT  p.*, u.user_name, 
                         (SELECT COUNT(c.comment_id) 
                             FROM comment as c 
                             WHERE c.photo_id = p.photo_id
@@ -94,7 +95,7 @@ class PhotoDao {
     findById(id) {
 
         return new Promise((resolve, reject) => this._db.get(`
-            SELECT  p.*, 
+            SELECT  p.*, u.user_name, 
                     (SELECT COUNT(c.comment_id) 
                         FROM comment as c 
                         WHERE c.photo_id = p.photo_id
@@ -103,7 +104,8 @@ class PhotoDao {
                         FROM like as l 
                         WHERE l.photo_id = p.photo_id
                     ) as likes 
-            FROM photo AS p
+            FROM photo AS p 
+            JOIN user as u on u.user_id = p.user_id  
             WHERE p.photo_id = ?
             ORDER BY p.photo_post_date DESC;
             `,
