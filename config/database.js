@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     user_name VARCHAR(30) NOT NULL UNIQUE, 
     user_email VARCHAR(255) NOT NULL, 
-    user_password VARCAHR(255) NOT NULL,
-    user_full_name VARCAHR(40) NOT NULL, 
+    user_password VARCHAR(255) NOT NULL,
+    user_full_name VARCHAR(40) NOT NULL, 
     user_join_date TIMESTAMP DEFAULT current_timestamp
 )
 `;
