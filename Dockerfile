@@ -1,4 +1,4 @@
-FROM 8.15.0-jessie
+FROM node/8.12.0-alpine
 
 WORKDIR /opt/app
 
