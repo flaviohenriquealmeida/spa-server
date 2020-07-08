@@ -1,4 +1,6 @@
 const commentConverter = row => ({
+    id: row.comment_id, 
+    photoId: row.photo_id,
     date: row.comment_date,
     text: row.comment_text,
     userName: row.user_name
@@ -42,7 +44,7 @@ class CommentDao {
             this._db.all(
                 `
                 SELECT 
-                    c.comment_date, c.comment_text, u.user_name 
+                    c.comment_id, c.photo_id, c.comment_date, c.comment_text, u.user_name 
                 FROM comment as c 
                     JOIN user as u ON u.user_id = c.user_id 
                 WHERE c.photo_id = ? 
