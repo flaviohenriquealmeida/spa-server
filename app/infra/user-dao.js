@@ -1,6 +1,6 @@
 const userConverter = row => ({
     id: row.user_id,
-    name: row.user_name,
+    userName: row.user_name,
     email: row.user_email
 });
 
@@ -10,10 +10,10 @@ class UserDao {
         this._db = db;
     }
 
-    findByNameAndPassword(userName, password) {
+    findByEmailAndPassword(email, password) {
         return new Promise((resolve, reject) => this._db.get(
-            `SELECT * FROM user WHERE user_name = ? AND user_password = ?`,
-            [userName, password],
+            `SELECT * FROM user WHERE user_email = ? AND user_password = ?`,
+            [email, password],
             (err, row) => {
                 if (err) {
                     console.log(err);

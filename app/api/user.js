@@ -4,12 +4,12 @@ const { UserDao } = require('../infra');
 const api = {}
 
 api.login = async (req, res) => {
-    const { userName, password } = req.body;
+    const { email, password } = req.body;
     console.log('####################################');
-    const user = await new UserDao(req.db).findByNameAndPassword(userName, password);
+    const user = await new UserDao(req.db).findByEmailAndPassword(email, password);
     console.log(user);
     if(user) {
-        console.log(`User ${userName} authenticated`);
+        console.log(`User ${user.userName} ${user.email} authenticated`);
         console.log('Authentication Token added to response');
         const token = jwt.sign(user, req.app.get('secret'), {
             expiresIn: 86400 // seconds, 24h
