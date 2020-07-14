@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS user (
     user_email VARCHAR(255) NOT NULL, 
     user_password VARCHAR(255) NOT NULL,
     user_full_name VARCHAR(40) NOT NULL, 
+    user_birthday TIMESTAMP,
     user_join_date TIMESTAMP DEFAULT current_timestamp
 )
 `;
@@ -18,8 +19,9 @@ INSERT INTO user (
     user_name, 
     user_email,
     user_password,
-    user_full_name
-) SELECT 'flavio', 'flavio@alurapic.com.br', '123', 'Flávio' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
+    user_full_name,
+    user_birthday
+) SELECT 'flavio', 'flavio@alurapic.com.br', '123', 'Flávio', 'Tue, 29 Jul 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
 `;
 
 const INSERT_DEFAULT_USER_2 = 
@@ -28,8 +30,9 @@ INSERT INTO user (
     user_name, 
     user_email,
     user_password,
-    user_full_name
-) SELECT 'almeida', 'almeida@alurapic.com.br', '123', 'Almeida' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'almeida')
+    user_full_name,
+    user_birthday
+) SELECT 'almeida', 'almeida@alurapic.com.br', '123', 'Almeida', 'Tue, 11 Jan 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'almeida')
 `;
 
 const PHOTO_SCHEMA = 
@@ -49,7 +52,7 @@ CREATE TABLE IF NOT EXISTS photo (
 const COMMENT_SCHEMA =
 `
 CREATE TABLE IF NOT EXISTS comment (
-    comment_id INTEGER   PRIMARY KEY AUTOINCREMENT,
+    comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     comment_date TIMESTAMP NOT NULL,
     comment_text TEXT  DEFAULT (''),
     photo_id INTEGER,
