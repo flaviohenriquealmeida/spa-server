@@ -35,4 +35,10 @@ api.checkUserNameTaken = async (req, res) => {
     res.json(!!user);
 };
 
+api.checkEmailTaken = async (req, res) => {
+    const { email } = req.params;
+    const user = await new UserDao(req.db).findByEmail(email);
+    res.json(!!user);
+};
+
 module.exports = api;

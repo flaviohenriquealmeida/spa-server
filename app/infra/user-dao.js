@@ -44,6 +44,23 @@ class UserDao {
         
     }
 
+    findByEmail(email) {
+
+        return new Promise((resolve, reject) => this._db.get(
+            `SELECT * FROM user WHERE user_email = ?`,
+            [email],
+            (err, row) => {
+                if (err) {
+                    console.log(err);
+                    return reject('Can`t find user');
+                }
+                 
+                if(row) resolve(userConverter(row));
+                resolve(null);
+            }
+        ));
+    }
+
     add(user) {
         return new Promise((resolve, reject) => {
             
