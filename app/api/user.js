@@ -17,9 +17,9 @@ api.login = async (req, res) => {
         res.set('x-access-token', token);
         return res.json(user);
     } else {
-        console.log(`Authentication failed for user ${userName}`);
+        console.log(`Authentication failed for ${email}`);
         console.log('No token generated');
-        res.status(401).json({ message: `Authentication failed for user ${userName}`});  
+        res.status(401).json({ message: `Authentication failed for user ${email}`});  
     }
 };
 

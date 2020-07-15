@@ -21,7 +21,7 @@ INSERT INTO user (
     user_password,
     user_full_name,
     user_birthday
-) SELECT 'flavio', 'flavio@alurapic.com.br', '123', 'Flávio', 'Tue, 29 Jul 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
+) SELECT 'flavio', 'flavio@flavio', '123', 'Flávio', 'Tue, 29 Jul 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
 `;
 
 const INSERT_DEFAULT_USER_2 = 
@@ -32,7 +32,7 @@ INSERT INTO user (
     user_password,
     user_full_name,
     user_birthday
-) SELECT 'almeida', 'almeida@alurapic.com.br', '123', 'Almeida', 'Tue, 11 Jan 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'almeida')
+) SELECT 'almeida', 'almeida@almeida', '123', 'Almeida', 'Tue, 11 Jan 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'almeida')
 `;
 
 const PHOTO_SCHEMA = 
