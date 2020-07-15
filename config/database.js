@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS user (
     user_email VARCHAR(255) NOT NULL, 
     user_password VARCHAR(255) NOT NULL,
     user_full_name VARCHAR(40) NOT NULL, 
-    user_birthday TIMESTAMP,
-    user_join_date TIMESTAMP DEFAULT current_timestamp
+    user_birthday TIMESTAMP NOT NULL,
+    user_join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 `;
 
@@ -21,7 +21,7 @@ INSERT INTO user (
     user_password,
     user_full_name,
     user_birthday
-) SELECT 'flavio', 'flavio@flavio', '123', 'Flávio', 'Tue, 29 Jul 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
+) SELECT 'flavio', 'flavio@flavio', '123', 'Flávio Almeida', '1990-01-07 09:10:06' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'flavio')
 `;
 
 const INSERT_DEFAULT_USER_2 = 
@@ -32,7 +32,7 @@ INSERT INTO user (
     user_password,
     user_full_name,
     user_birthday
-) SELECT 'almeida', 'almeida@almeida', '123', 'Almeida', 'Tue, 11 Jan 1977 15:03:03 GMT' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'almeida')
+) SELECT 'camila', 'almeida@almeida', '123', 'Camila Almeida', '1977-07-29 11:20:06' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'camila')
 `;
 
 const PHOTO_SCHEMA = 
@@ -54,7 +54,7 @@ const COMMENT_SCHEMA =
 CREATE TABLE IF NOT EXISTS comment (
     comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     comment_date TIMESTAMP NOT NULL,
-    comment_text TEXT  DEFAULT (''),
+    comment_text TEXT DEFAULT (''),
     photo_id INTEGER,
     user_id INTEGER,
     FOREIGN KEY (photo_id) REFERENCES photo (photo_id) ON DELETE CASCADE,

@@ -1,7 +1,9 @@
 const userConverter = row => ({
     id: row.user_id,
+    email: row.user_email,
     userName: row.user_name,
-    email: row.user_email
+    fullName: row.user_fullname,
+    birthday: row.user_birthday,
 });
 
 class UserDao {
@@ -68,6 +70,7 @@ class UserDao {
                 INSERT INTO user (
                     user_name,
                     user_full_name,
+                    user_birthday,
                     user_email, 
                     user_password, 
                     user_join_date
@@ -76,9 +79,10 @@ class UserDao {
                 [
                     user.userName,
                     user.fullName,
+                    user.birthday,
                     user.email, 
                     user.password, 
-                    new Date()
+                    new Date().toUTCString()
                 ],
                 function (err) {
                     if (err) {
