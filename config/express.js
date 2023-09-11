@@ -5,7 +5,7 @@ const express = require('express')
     , cors = require('cors')
     , db = require('./database')
     , multer = require('multer')
-    , uuidv4 = require('uuid/v4')
+    , uuidv4 = require('uuid')
     , fs = require('fs')
     , { commentRoutes, photoRoutes, userRoutes } = require('../app/routes');
 
